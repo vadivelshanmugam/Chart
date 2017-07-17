@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<title>Chart - Example 1</title>
+	</head>
+	<style>
+	.graph {
+		position: relative;
+		text-align: center;
+		width: 100px;
+		height: 100px;
+		border-radius: 100%;
+		background-color: rgb(239, 239, 239);
+		background-image: none;
+		-webkit-transition: background-image 12s; /* Safari */
+		transition: background-image 12s;
+	}
+	.animate {
+		-webkit-animation: mymove 10s infinite; /* Safari 4.0 - 8.0 */
+		animation: mymove 10s infinite;
+	}
+	.cir {
+		position: relative;top: 10px;left: 10px;text-align: center;width: 80px;height: 80px;border-radius: 100%;background-color: rgb(255, 255, 255);
+	}
+	.perc {
+		display: block; width: 80px; height: 80px; line-height: 80px; vertical-align: middle; font-size: 15px; font-weight: normal; color: rgb(92, 147, 200);
+	}
+	/* Safari 4.0 - 8.0 */
+	@-webkit-keyframes mymove {
+		 0%{background-position:0% 50%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 50%}
+	}
+
+	@keyframes mymove {
+		 0%{background-position:0% 50%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 50%}
+	}
+	</style>
+	<script type="text/javascript" src="../jquery.min.js"></script>
+	<body>
+		<input type="text" class="perVal"><button class="populateChart">GO</button>
+		<div class="graph">
+			<div class="cir">
+				<span class="perc"></span>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+$('.populateChart').on('click', function(){
+	var val = $('.perVal').val();
+	var perVal = (3.6 * val)+90;
+	
+	$('.perc').text(val+'%');
+	if(val > 50) {
+		$('.graph').css({
+			backgroundImage: "linear-gradient("+perVal+"deg, transparent 50%, rgb(233, 85, 70) 50%), linear-gradient(90deg, rgb(233, 85, 70) 50%, transparent 50%)",
+			backgroundColor: "rgb(239, 239, 239)"
+		});
+	} else {
+		$('.graph').css({
+			backgroundImage: "linear-gradient(90deg, transparent 50%, rgb(239, 239, 239) 50%), linear-gradient("+perVal+"deg, rgb(239, 239, 239) 50%, transparent 50%)",
+			backgroundColor: "rgb(233, 85, 70)"
+		});
+	}
+});
+$(function(){
+});
+</script>
